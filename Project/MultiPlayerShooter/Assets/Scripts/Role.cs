@@ -88,4 +88,12 @@ public class Role : MonoBehaviour
         this.CheckLeftShootTimes();
     }
 
+    public void Move(Vector2 vec)
+    {
+
+    }
+    public void Turn(Vector2 vec)
+    {
+
+    }
 }

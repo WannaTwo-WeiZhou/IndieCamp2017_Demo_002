@@ -12,14 +12,16 @@ public class InputManager : MonoBehaviour
 
 		if (role01 != null)
 		{
-			if (Input.GetMouseButtonDown(0))
+			// shoot
+			if (Input.GetKeyDown(KeyCode.Space))
 			{
 				role01.Shoot();
 			}
 		}
 		if (role02 != null)
 		{
-			if (Input.GetMouseButtonDown(1))
+			// shoot
+			if (Input.GetKeyDown(KeyCode.Keypad0))
 			{
 				role02.Shoot();
 			}
