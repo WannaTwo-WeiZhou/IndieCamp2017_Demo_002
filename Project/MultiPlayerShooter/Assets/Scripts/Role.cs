@@ -2,16 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum DirType
+{
+    Up = 0,
+    Left = 1,
+    Down = 2,
+    Right = 3
+};
+
 public class Role : MonoBehaviour
 {
     public float m_ShootInterval = 0.5f;
+    public float m_MoveVec = 1f;
     public GameObject m_Arrow;
     public Transform m_AtkStartPos;
 
     private IEnumerator m_IE_ContinuseShoot;
     private float m_NextShootTime;
     private int m_LeftShootTimes;
-    private readonly int m_MaxLeftShootTimes = 1;
+    private readonly int m_MaxLeftShootTimes = 0;
 
     void Awake()
     {
@@ -90,10 +99,65 @@ public class Role : MonoBehaviour
 
     public void Move(Vector2 vec)
     {
+        // Debug.Log(gameObject.name + " Move(" + vec + ")");
 
+        if (Mathf.Abs(vec.x) > Mathf.Abs(vec.y))
+        {
+            if (vec.x > 0)
+            {
+                vec = Vector2.right;
+            }
+            else
+            {
+                vec = Vector2.left;
+            }
+        }
+        else
+        {
+            if (vec.y > 0)
+            {
+                vec = Vector2.up;
+            }
+            else
+            {
+                vec = Vector2.down;
+            }
+        }
+
+        transform.Translate(vec * m_MoveVec * Time.deltaTime, Space.World);
     }
     public void Turn(Vector2 vec)
     {
+        // Debug.Log(gameObject.name + " Turn(" + vec + ")");
 
+        if (Mathf.Abs(vec.x) > Mathf.Abs(vec.y))
+        {
+            if (vec.x > 0)
+            {
+                vec = Vector2.right;
+            }
+            else
+            {
+                vec = Vector2.left;
+            }
+        }
+        else
+        {
+            if (vec.y > 0)
+            {
+                vec = Vector2.up;
+            }
+            else
+            {
+                vec = Vector2.down;
+            }
+        }
+
+        float ang = Vector2.Angle(vec, Vector2.up);
+        if (vec.x > 0)
+            ang = -ang;
+
+        transform.SetLocalEulerAngles_Z(ang);
+        // Debug.Log(gameObject.name + "'s ang = " + ang);
     }
 }

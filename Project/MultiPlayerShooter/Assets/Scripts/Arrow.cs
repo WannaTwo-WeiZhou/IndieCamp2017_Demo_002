@@ -15,6 +15,10 @@ public class Arrow : MonoBehaviour
 
 	void Start()
 	{
+		// set color
+		GetComponentInChildren<SpriteRenderer>().color = 
+			m_Role.GetComponentInChildren<SpriteRenderer>().color;
+
 		Destroy(gameObject, 3f);
 	}
 
